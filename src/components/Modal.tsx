@@ -13,10 +13,7 @@ const Modal = () => {
 
   return isOpen ? (
     <div className="flex fixed inset-0 justify-center items-center bg-gray-300 w-full h-screen backdrop-blur-sm">
-      <div
-        className="w-[375px] h-[700px] bg-white m-auto rounded-lg p-4"
-        ref={ref}
-      >
+      <div className="w-[375px] h-[700px] bg-white m-auto rounded-lg" ref={ref}>
         {content}
       </div>
     </div>
