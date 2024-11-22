@@ -23,29 +23,3 @@ const Modal = () => {
 };
 
 export default Modal;
-
-export const SamplePage = () => {
-  const { setModal, closeModal } = useModal();
-  const [card, setCard] = useState<cardType>({
-    cardCompany: '노드카드',
-    cardColor: 'black',
-    cardNumber: '1234 1111 1111 1122',
-    userName: '홍길동',
-    cvcCode: '373',
-    expiredDate: '12/11',
-  });
-  return (
-    <div>
-      <div>
-        <Card data={card} />
-        샘플 모달 창
-      </div>
-      <input
-        value={card.userName}
-        onChange={(e) => setCard({ ...card, userName: e.target.value })}
-      />
-      <button onClick={() => setModal(<div>변경된 창</div>)}>모달 변경</button>
-      <button onClick={closeModal}>모달 닫기</button>
-    </div>
-  );
-};

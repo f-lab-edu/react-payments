@@ -1,5 +1,38 @@
 import { ReactNode, useState } from 'react';
 import { useModal } from '../hook/useModal';
+import Carousel from '../components/Carousel';
+import Card from '../components/Card';
+import { cardType } from '../types/cardType';
+
+const DUMMY_CARD: cardType[] = [
+  {
+    cardCompany: '노드카드',
+    cardColor: 'black',
+    cardNumber: '1234 1111 1111 1122',
+    userName: '홍길동',
+    cvcCode: '373',
+    expiredDate: '12/11',
+    cardAlias: '홈카드',
+  },
+  {
+    cardCompany: '노드카드',
+    cardColor: 'red',
+    cardNumber: '1234 1111 1111 1122',
+    userName: '홍길동',
+    cvcCode: '373',
+    expiredDate: '12/11',
+    cardAlias: '홈카드',
+  },
+  {
+    cardCompany: '노드카드',
+    cardColor: 'yellow',
+    cardNumber: '1234 1111 1111 1122',
+    userName: '홍길동',
+    cvcCode: '373',
+    expiredDate: '12/11',
+    cardAlias: '홈카드',
+  },
+];
 
 const PaymentMain = () => {
   const { closeModal } = useModal();
@@ -21,7 +54,20 @@ const PaymentMain = () => {
         <span className="border-l-2 border-mint">결제</span>
       </header>
       <section className="flex flex-col gap-5 mt-5">
-        <Box title={'보유카드'}>카드</Box>
+        <Box title={'보유카드'}>
+          <Carousel>
+            {DUMMY_CARD.map((card, i) => (
+              <div key={i}>
+                <Card data={card} />
+                <div className="mt-3">{card.cardAlias}</div>
+              </div>
+            ))}
+            <div>
+              <Card onClick={() => alert('1')} />
+              <div className="mt-3">신규등록</div>
+            </div>
+          </Carousel>
+        </Box>
         <Box title={'결제금액'}>
           <div className="flex justify-between">
             <UnderLine>총 결제금액</UnderLine>

@@ -1,4 +1,5 @@
 export type cardType = {
+  cardAlias: string;
   cardCompany: string;
   cardColor: string;
   cardNumber: string;
