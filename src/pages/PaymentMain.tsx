@@ -2,41 +2,14 @@ import { ReactNode, useState } from 'react';
 import { useModal } from '../hook/useModal';
 import Carousel from '../components/Carousel';
 import Card from '../components/Card';
-import { cardType } from '../types/cardType';
-
-const DUMMY_CARD: cardType[] = [
-  {
-    cardCompany: '노드카드',
-    cardColor: 'black',
-    cardNumber: '1234 1111 1111 1122',
-    userName: '홍길동',
-    cvcCode: '373',
-    expiredDate: '12/11',
-    cardAlias: '홈카드',
-  },
-  {
-    cardCompany: '노드카드',
-    cardColor: 'red',
-    cardNumber: '1234 1111 1111 1122',
-    userName: '홍길동',
-    cvcCode: '373',
-    expiredDate: '12/11',
-    cardAlias: '홈카드',
-  },
-  {
-    cardCompany: '노드카드',
-    cardColor: 'yellow',
-    cardNumber: '1234 1111 1111 1122',
-    userName: '홍길동',
-    cvcCode: '373',
-    expiredDate: '12/11',
-    cardAlias: '홈카드',
-  },
-];
+import CreateCard from './CreateCard';
+import useCardStore from '../hook/useCardStore';
+import CardList from './CardList';
 
 const PaymentMain = () => {
-  const { closeModal } = useModal();
+  const { setModal, closeModal } = useModal();
   const [isAgree, setIsAgree] = useState(false);
+  const { Cards } = useCardStore();
 
   const purchaseHandler = () => {
     alert('결제가 완료되었습니다.');
@@ -56,14 +29,14 @@ const PaymentMain = () => {
       <section className="flex flex-col gap-5 mt-5">
         <Box title={'보유카드'}>
           <Carousel>
-            {DUMMY_CARD.map((card, i) => (
+            {Cards.map((card, i) => (
               <div key={i}>
-                <Card data={card} />
+                <Card data={card} onClick={() => setModal(<CardList />)} />
                 <div className="mt-3">{card.cardAlias}</div>
               </div>
             ))}
             <div>
-              <Card onClick={() => alert('1')} />
+              <Card onClick={() => setModal(<CreateCard />)} />
               <div className="mt-3">신규등록</div>
             </div>
           </Carousel>

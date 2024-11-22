@@ -6,6 +6,7 @@ export interface ModalContextType {
   content: ReactNode;
   setModal: (content: ReactNode) => void;
   closeModal: () => void;
+  historyBack: () => void;
 }
 
 // Context 초기값 설정
@@ -16,21 +17,39 @@ export const ModalContext = createContext<ModalContextType | undefined>(
 // Context Provider 컴포넌트
 export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [content, setContent] = useState<ReactNode>(null);
+  const [history, setHistory] = useState<ReactNode[]>([]);
+  const [content, setContent] = useState<number>(-1);
 
   const openModal = (modalContent: ReactNode) => {
-    setContent(modalContent);
+    setHistory([...history, modalContent]);
+    setContent(history.length);
     setIsOpen(true);
   };
 
   const closeModal = () => {
     setIsOpen(false);
-    setContent(null);
+    setHistory([]);
+    setContent(-1);
+  };
+
+  const historyBack = () => {
+    if (content > 0) {
+      history.pop();
+      setContent(content - 1);
+    } else {
+      closeModal();
+    }
   };
 
   return (
     <ModalContext.Provider
-      value={{ isOpen, content, setModal: openModal, closeModal }}
+      value={{
+        isOpen,
+        content: content >= 0 && history[content],
+        setModal: openModal,
+        closeModal,
+        historyBack,
+      }}
     >
       {children}
     </ModalContext.Provider>

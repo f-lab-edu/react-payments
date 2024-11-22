@@ -1,9 +1,5 @@
-import { useState } from 'react';
 import { useModal } from '../hook/useModal';
 import { useOutsideClick } from '../hook/useOutsideClick';
-import Card from './Card';
-import { cardType } from '../types/cardType';
-
 const Modal = () => {
   const { isOpen, content, closeModal } = useModal();
   const handleModalClose = () => {
@@ -13,7 +9,10 @@ const Modal = () => {
 
   return isOpen ? (
     <div className="flex fixed inset-0 justify-center items-center bg-gray-300 w-full h-screen backdrop-blur-sm">
-      <div className="w-[375px] h-[700px] bg-white m-auto rounded-lg" ref={ref}>
+      <div
+        className="relative w-[375px] h-[700px] bg-white m-auto rounded-lg"
+        ref={ref}
+      >
         {content}
       </div>
     </div>

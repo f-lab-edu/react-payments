@@ -14,7 +14,7 @@ const Card = ({ data, onClick }: CardProps) => {
 
   return (
     <div
-      className="flex flex-col justify-between w-[208px] h-[130px] rounded-lg p-2.5 text-[#575757] text-[14px] shadow-md shadow-gray-400"
+      className={`flex flex-col justify-between w-[208px] h-[130px] rounded-lg p-2.5 text-[#575757] text-[14px] shadow-md shadow-gray-400 ${onClick ? 'cursor-pointer' : ''}`}
       style={{ backgroundColor: data ? data.cardColor : '#d5d5d5' }}
       onClick={onClick}
     >

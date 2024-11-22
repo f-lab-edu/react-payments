@@ -6,4 +6,5 @@ export type cardType = {
   userName: string;
   cvcCode: string;
   expiredDate: string;
+  password: string;
 };
