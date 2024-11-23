@@ -1,19 +1,18 @@
-import useCardStore from '../hook/useCardStore';
+import useCardStorage from '../storage/useCardStorage.ts';
 import Card from '../components/Card';
-import { useModal } from '../hook/useModal';
+import { useModal } from '../contexts/hooks/useModal.tsx';
 import CreateCard from './CreateCard';
 import PaymentMain from './PaymentMain';
-import { cardType } from '../types/cardType';
+import { CardType } from '../storage/cardType.ts';
 import CreateCardComplete from './CreateCardComplete';
 
 const CardList = () => {
   const { setModal } = useModal();
-  const { Cards, removeCard } = useCardStore();
+  const { Cards, removeCard } = useCardStorage();
   const removeHandler = (cardNumber: string) => {
     if (!confirm('정말 삭제하시겠습니까?')) return;
 
     removeCard(cardNumber);
-    setModal(<CardList />);
   };
   return (
     <div className="p-5 h-full overflow-y-auto">
@@ -22,7 +21,7 @@ const CardList = () => {
         <div onClick={() => setModal(<PaymentMain />)}>X</div>
       </div>
       <div className="flex flex-col gap-5 items-center p-5">
-        {Cards.map((card: cardType) => (
+        {Cards.map((card: CardType) => (
           <div key={card.cardNumber} className="relative">
             <div>
               <Card

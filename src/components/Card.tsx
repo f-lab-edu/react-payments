@@ -1,7 +1,7 @@
-import { cardType } from '../types/cardType';
+import { CardType } from '../storage/cardType.ts';
 
 interface CardProps {
-  data?: cardType;
+  data?: CardType;
   onClick?: () => void;
 }
 const Card = ({ data, onClick }: CardProps) => {

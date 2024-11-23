@@ -1,15 +1,15 @@
 import { ReactNode, useState } from 'react';
-import { useModal } from '../hook/useModal';
+import { useModal } from '../contexts/hooks/useModal.tsx';
 import Carousel from '../components/Carousel';
 import Card from '../components/Card';
 import CreateCard from './CreateCard';
-import useCardStore from '../hook/useCardStore';
+import useCardStorage from '../storage/useCardStorage.ts';
 import CardList from './CardList';
 
 const PaymentMain = () => {
   const { setModal, closeModal } = useModal();
   const [isAgree, setIsAgree] = useState(false);
-  const { Cards } = useCardStore();
+  const { Cards } = useCardStorage();
 
   const purchaseHandler = () => {
     alert('결제가 완료되었습니다.');

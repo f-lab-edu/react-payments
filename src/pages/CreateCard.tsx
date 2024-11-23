@@ -1,73 +1,25 @@
-import React, { ReactNode, useState } from 'react';
-import { useModal } from '../hook/useModal';
+import React, { ReactNode } from 'react';
 import ArrowIcon from '../components/icons/ArrowIcon';
 import Card from '../components/Card';
-import { cardType } from '../types/cardType';
 import SelectCardCompany from '../components/SelectCardCompany';
-import useCardStore from '../hook/useCardStore';
-import CreateCardComplete from './CreateCardComplete';
+import useCreateCard from './hooks/useCreateCard.tsx';
+import useModalHistoryBack from '../contexts/hooks/useModalHistoryBack.ts';
+
+const INPUT_STYLE = 'bg-gray-200 p-3 rounded-md text-mint font-bold';
 
 const CreateCard = () => {
-  const { historyBack, setModal } = useModal();
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [cardData, setCardData] = useState<cardType>({
-    cardCompany: '',
-    cardColor: '',
-    cardNumber: '',
-    userName: '',
-    cvcCode: '',
-    expiredDate: '',
-    cardAlias: '',
-    password: '',
-  });
-  // const { addCard } = useCardStore();
-
-  const companyHandler = (cardCompany: string, cardColor: string) => {
-    setCardData({ ...cardData, cardCompany, cardColor });
-    setDrawerOpen(false);
-  };
-
-  const INPUT_STYLE = 'bg-gray-200 p-3 rounded-md text-mint font-bold';
-
-  const cardnumberHandler = (cardNumber: string) => {
-    // 숫자가 아니면 제거
-    const sanitizedInput = cardNumber.replace(/[^0-9]/g, '');
-    // 문자열을 4개씩 자르기
-    const chunks = sanitizedInput.match(/.{1,4}/g) || [];
-
-    // 16자리 이상은 입력 불가
-    if (chunks.length > 4) return;
-
-    setCardData({ ...cardData, cardNumber: chunks.join('-') });
-  };
-
-  const expiredDateHandler = (date: string) => {
-    // 숫자가 아니면 제거
-    const sanitizedInput = date.replace(/[^0-9]/g, '');
-
-    // 2자리씩 자르기
-    const chunks = sanitizedInput.match(/.{1,2}/g) || [];
-
-    // 4자리 이상은 입력 불가
-    if (chunks.length > 2) return;
-
-    setCardData({ ...cardData, expiredDate: chunks.join('/') });
-  };
-
-  const cardCvcHandler = (cvcCode: string) => {
-    // 숫자가 아니면 제거
-    const sanitizedInput = cvcCode.replace(/[^0-9]/g, '');
-    // 3자리 이상은 입력 불가
-    if (sanitizedInput.length > 3) return;
-
-    setCardData({ ...cardData, cvcCode: sanitizedInput });
-  };
-
-  const registerCard = () => {
-    // TODO : 데이터 입력 확인 및 유효성 검사 필요
-    setModal(<CreateCardComplete card={cardData} />);
-    // addCard(cardData);
-  };
+  const historyBack = useModalHistoryBack();
+  const {
+    drawerOpen,
+    setDrawerOpen,
+    cardData,
+    companyHandler,
+    registerCard,
+    changeCardName,
+    expiredDateHandler,
+    cardNumberHandler,
+    cardCvcHandler,
+  } = useCreateCard();
 
   return (
     <>
@@ -97,7 +49,7 @@ const CreateCard = () => {
               placeholder="카드 번호"
               className={`${INPUT_STYLE} text-center `}
               value={cardData.cardNumber}
-              onChange={(v) => cardnumberHandler(v.target.value)}
+              onChange={(v) => cardNumberHandler(v.target.value)}
             />
           </TitleBox>
 
@@ -117,9 +69,7 @@ const CreateCard = () => {
               placeholder="카드 소유자"
               className={`${INPUT_STYLE}`}
               value={cardData.userName}
-              onChange={(v) =>
-                setCardData({ ...cardData, userName: v.target.value })
-              }
+              onChange={(v) => changeCardName(v.target.value)}
             />
           </TitleBox>
 

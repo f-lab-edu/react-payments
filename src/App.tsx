@@ -1,5 +1,5 @@
-import { useModal } from './hook/useModal';
 import PaymentMain from './pages/PaymentMain';
+import { useModal } from './contexts/hooks/useModal.tsx';
 
 function App() {
   const { setModal } = useModal();

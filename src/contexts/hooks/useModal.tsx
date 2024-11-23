@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ModalContext, ModalContextType } from '../contexts/ModalContext';
+import { ModalContext, ModalContextType } from '../ModalContext.tsx';
 
 // Context를 사용하기 위한 커스텀 Hook
 export const useModal = (): ModalContextType => {
