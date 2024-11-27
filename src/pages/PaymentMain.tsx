@@ -29,7 +29,7 @@ const PaymentMain = () => {
       <section className="flex flex-col gap-5 mt-5">
         <Box title={'보유카드'}>
           <Carousel>
-            {Cards.map((card, i) => (
+            {Cards?.map((card, i) => (
               <div key={i}>
                 <Card data={card} onClick={() => setModal(<CardList />)} />
                 <div className="mt-3">{card.cardAlias}</div>

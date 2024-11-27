@@ -17,7 +17,6 @@ export const CardProvider = ({ children }: PropsWithChildren) => {
   const [Cards, setCards] = useState(() => cardStorage.get());
 
   const updateCards = (newCards: CardType[]) => {
-    console.log('newCards', newCards);
     cardStorage.set(newCards);
     setCards(newCards);
   };
@@ -34,10 +33,10 @@ export const CardProvider = ({ children }: PropsWithChildren) => {
 
   const addCard = (card: CardType) => {
     // 중복된 카드가 있다면 교체
-    const index = Cards.findIndex(
+    const index = Cards?.findIndex(
       (c: CardType) => c.cardNumber === card.cardNumber
     );
-    const newCards = [...Cards];
+    const newCards = Cards ? [...Cards] : [];
     if (index !== -1) {
       // 기존 배열을 수정하지 않고 새로운 배열 생성
       updateCards([
