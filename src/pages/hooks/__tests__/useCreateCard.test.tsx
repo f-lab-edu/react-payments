@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import useCreateCard from '../useCreateCard';
 import { useModal } from '../../../contexts/hooks/useModal';
-import { vi, describe, beforeEach, it, expect } from 'vitest';
+import { vi, describe, beforeEach, it, expect, Mock } from 'vitest';
 
 // useModal mock
 vi.mock('../../../contexts/hooks/useModal', () => ({
@@ -68,10 +68,10 @@ describe('useCreateCard', () => {
     const { result } = renderHook(() => useCreateCard());
 
     act(() => {
-      result.current.cardNumberHandler('1234-abcd-5678-efgh');
+      result.current.cardNumberHandler('1/*2-abcd-ㅁㄴ34-æ5');
     });
 
-    expect(result.current.cardData.cardNumber).toBe('1234-5678');
+    expect(result.current.cardData.cardNumber).toBe('1234-5');
   });
 
   it('changeCardName이 사용자 이름을 올바르게 설정해야 한다', () => {
@@ -126,7 +126,7 @@ describe('useCreateCard', () => {
 
   it('registerCard가 모달을 올바르게 설정해야 한다', () => {
     const mockSetModal = vi.fn();
-    (useModal as vi.Mock).mockReturnValue({
+    (useModal as Mock).mockReturnValue({
       setModal: mockSetModal,
     });
 

@@ -26,13 +26,13 @@ export default function useCreateCard() {
   const cardNumberHandler = (cardNumber: string) => {
     // 숫자가 아니면 제거
     const sanitizedInput = cardNumber.replace(/[^0-9]/g, '');
+    console.log(sanitizedInput);
     // 문자열을 4개씩 자르기
     const chunks = sanitizedInput.match(/.{1,4}/g) || [];
+    // 4자리 이후는 제거
+    const formatted = chunks.slice(0, 4);
 
-    // 16자리 이상은 입력 불가
-    if (chunks.length > 4) return;
-
-    setCardData({ ...cardData, cardNumber: chunks.join('-') });
+    setCardData({ ...cardData, cardNumber: formatted.join('-') });
   };
 
   const changeCardName = (name: string) => {
@@ -47,18 +47,18 @@ export default function useCreateCard() {
     const chunks = sanitizedInput.match(/.{1,2}/g) || [];
 
     // 4자리 이상은 입력 불가
-    if (chunks.length > 2) return;
+    const formatted = chunks.slice(0, 2);
 
-    setCardData({ ...cardData, expiredDate: chunks.join('/') });
+    setCardData({ ...cardData, expiredDate: formatted.join('/') });
   };
 
   const cardCvcHandler = (cvcCode: string) => {
     // 숫자가 아니면 제거
     const sanitizedInput = cvcCode.replace(/[^0-9]/g, '');
     // 3자리 이상은 입력 불가
-    if (sanitizedInput.length > 3) return;
+    const formatted = sanitizedInput.slice(0, 3);
 
-    setCardData({ ...cardData, cvcCode: sanitizedInput });
+    setCardData({ ...cardData, cvcCode: formatted });
   };
 
   const registerCard = () => {
