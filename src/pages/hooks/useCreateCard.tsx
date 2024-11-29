@@ -26,7 +26,7 @@ export default function useCreateCard() {
   const cardNumberHandler = (cardNumber: string) => {
     // 숫자가 아니면 제거
     const sanitizedInput = cardNumber.replace(/[^0-9]/g, '');
-    console.log(sanitizedInput);
+
     // 문자열을 4개씩 자르기
     const chunks = sanitizedInput.match(/.{1,4}/g) || [];
     // 4자리 이후는 제거
@@ -61,10 +61,41 @@ export default function useCreateCard() {
     setCardData({ ...cardData, cvcCode: formatted });
   };
 
+  const checkCardData = (cardData: CardType) => {
+    // 카드 넘버 유효성 검사. 16자리 숫자
+    if (cardData.cardNumber.replace(/[^0-9]/g, '').length !== 16) {
+      alert('카드번호를 확인해주세요. 16자리 숫자입니다.');
+      return false;
+    }
+    // 만료일 유효성 검사. MM/YY
+    if (cardData.expiredDate.replace(/[^0-9]/g, '').length !== 4) {
+      alert('만료일을 확인해주세요');
+      return false;
+    }
+    // 카드 소유자 유효성 검사. 1자 이상
+    if (cardData.userName.length < 1) {
+      alert('카드 소유자를 확인해주세요');
+      return false;
+    }
+    // CVC 유효성 검사. 3자리 숫자
+    if (cardData.cvcCode.replace(/[^0-9]/g, '').length !== 3) {
+      alert('CVC를 확인해주세요');
+      return false;
+    }
+    // 카드사 유효성 검사. 1자 이상
+    if (cardData.cardCompany.length < 1) {
+      alert('카드사를 확인해주세요');
+      return false;
+    }
+    return true;
+  };
+
   const registerCard = () => {
-    // TODO : 데이터 입력 확인 및 유효성 검사 필요
+    if (!checkCardData(cardData)) {
+      return;
+    }
+
     setModal(<CreateCardComplete card={cardData} />);
-    // addCard(cardData);
   };
 
   return {
@@ -76,6 +107,7 @@ export default function useCreateCard() {
     changeCardName,
     expiredDateHandler,
     cardCvcHandler,
+    checkCardData,
     registerCard,
   };
 }

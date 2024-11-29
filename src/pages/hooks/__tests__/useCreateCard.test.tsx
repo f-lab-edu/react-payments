@@ -138,4 +138,21 @@ describe('useCreateCard', () => {
 
     expect(mockSetModal).toHaveBeenCalled();
   });
+
+  it('checkCardData가 카드 데이터를 올바르게 검사해야 한다', () => {
+    const { result } = renderHook(() => useCreateCard());
+
+    expect(
+      result.current.checkCardData({
+        cardCompany: '신한카드',
+        cardColor: 'blue',
+        cardNumber: '1234-5678-9012-3456',
+        userName: '홍길동',
+        cvcCode: '123',
+        expiredDate: '12/25',
+        cardAlias: '홍길동 카드',
+        password: '1234',
+      })
+    ).toBe(true);
+  });
 });
