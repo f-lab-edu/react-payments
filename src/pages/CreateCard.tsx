@@ -4,6 +4,8 @@ import Card from '../components/Card';
 import SelectCardCompany from '../components/SelectCardCompany';
 import useCreateCard from './hooks/useCreateCard.tsx';
 import useModalHistoryBack from '../contexts/hooks/useModalHistoryBack.ts';
+import Input from '../components/input/Input.tsx';
+import CardNumberInput from '../components/input/CardNumberInput.tsx';
 
 const INPUT_STYLE = 'bg-gray-200 p-3 rounded-md text-mint font-bold';
 
@@ -44,21 +46,17 @@ const CreateCard = () => {
           </div>
 
           <TitleBox title="카드번호">
-            <input
-              type="text"
-              placeholder="카드 번호"
-              className={`${INPUT_STYLE} text-center `}
-              value={cardData.cardNumber}
-              onChange={(v) => cardNumberHandler(v.target.value)}
-            />
+            <CardNumberInput onChange={(v) => cardNumberHandler(v)} />
           </TitleBox>
 
           <TitleBox title="유효기간">
-            <input
+            <Input
               type="text"
               placeholder="유효기간"
-              className={`${INPUT_STYLE} w-[100px] text-center`}
+              className={`w-[100px] text-center`}
               value={cardData.expiredDate}
+              maxLength={4}
+              onFull={(e) => console.log('111')}
               onChange={(v) => expiredDateHandler(v.target.value)}
             />
           </TitleBox>
