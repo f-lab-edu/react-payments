@@ -98,6 +98,10 @@ export default function useCreateCard() {
     setModal(<CreateCardComplete card={cardData} />);
   };
 
+  const passwordHandler = (password: string) => {
+    setCardData({ ...cardData, password });
+  };
+
   return {
     cardData,
     drawerOpen,
@@ -109,5 +113,6 @@ export default function useCreateCard() {
     cardCvcHandler,
     checkCardData,
     registerCard,
+    passwordHandler,
   };
 }

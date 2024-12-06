@@ -5,8 +5,10 @@ import { handleFull } from './util/InputUtil';
 import React from 'react';
 const CardNumberInput = ({
   onChange,
+  onFull,
   ...props
 }: Omit<ComponentProps<'input'>, 'onChange'> & {
+  onFull?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onChange?: (v: string) => void;
 }) => {
   const [value, setValue] = React.useState({
@@ -56,7 +58,7 @@ const CardNumberInput = ({
       -
       <Input
         maxLength={4}
-        onFull={handleFull}
+        onFull={onFull}
         className="text-center"
         name="input4"
         value={value.input4}

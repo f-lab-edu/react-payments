@@ -1,11 +1,15 @@
 import React, { ReactNode } from 'react';
 import ArrowIcon from '../components/icons/ArrowIcon';
 import Card from '../components/Card';
-import SelectCardCompany from '../components/SelectCardCompany';
+import SelectCardCompany from '../components/drawer/SelectCardCompany.tsx';
 import useCreateCard from './hooks/useCreateCard.tsx';
 import useModalHistoryBack from '../contexts/hooks/useModalHistoryBack.ts';
 import Input from '../components/input/Input.tsx';
 import CardNumberInput from '../components/input/CardNumberInput.tsx';
+import InputBox from '../components/input/InputBox.tsx';
+import ExpireDateInput from '../components/input/ExpireDateInput.tsx';
+import PasswordInput from '../components/input/PasswordInput.tsx';
+import CvcInput from '../components/input/CvcInput.tsx';
 
 const INPUT_STYLE = 'bg-gray-200 p-3 rounded-md text-mint font-bold';
 
@@ -21,6 +25,7 @@ const CreateCard = () => {
     expiredDateHandler,
     cardNumberHandler,
     cardCvcHandler,
+    passwordHandler,
   } = useCreateCard();
 
   return (
@@ -50,52 +55,26 @@ const CreateCard = () => {
           </TitleBox>
 
           <TitleBox title="유효기간">
-            <Input
-              type="text"
-              placeholder="유효기간"
-              className={`w-[100px] text-center`}
-              value={cardData.expiredDate}
-              maxLength={4}
-              onFull={(e) => console.log('111')}
-              onChange={(v) => expiredDateHandler(v.target.value)}
-            />
+            <ExpireDateInput onChange={(v) => expiredDateHandler(v)} />
           </TitleBox>
 
           <TitleBox title="카드소유자">
-            <input
-              type="text"
-              placeholder="카드 소유자"
-              className={`${INPUT_STYLE}`}
-              value={cardData.userName}
-              onChange={(v) => changeCardName(v.target.value)}
-            />
+            <InputBox>
+              <Input
+                type="text"
+                placeholder="카드 소유자"
+                value={cardData.userName}
+                onChange={(v) => changeCardName(v.target.value)}
+              />
+            </InputBox>
           </TitleBox>
 
           <TitleBox title="보안코드(CVC/CVV)">
-            <input
-              type="password"
-              placeholder="CVC/CVV"
-              className={`${INPUT_STYLE} w-[100px] text-center`}
-              value={cardData.cvcCode}
-              onChange={(v) => cardCvcHandler(v.target.value)}
-            />
+            <CvcInput onChange={(v) => cardCvcHandler(v)} />
           </TitleBox>
 
           <TitleBox title="카드 비밀번호">
-            <div className="flex gap-3 items-center ">
-              <input
-                type="password"
-                className={`${INPUT_STYLE} w-[50px] text-center`}
-                maxLength={1}
-              />
-              <input
-                type="password"
-                className={`${INPUT_STYLE} w-[50px] text-center`}
-                maxLength={1}
-              />
-              <div className="w-1 aspect-square rounded-full bg-mint mx-4" />
-              <div className="w-1 aspect-square rounded-full bg-mint mx-4" />
-            </div>
+            <PasswordInput onChange={(v) => passwordHandler(v)} />
           </TitleBox>
 
           <button
