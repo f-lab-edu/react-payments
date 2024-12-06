@@ -37,7 +37,7 @@ const ExpireDateInput = ({
       /
       <Input
         maxLength={2}
-        onFull={handleFull}
+        onFull={onFull}
         name="input2"
         className="text-center"
         onChange={handleChange}

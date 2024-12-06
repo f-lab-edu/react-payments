@@ -6,7 +6,6 @@ import React from 'react';
 const CardNumberInput = ({
   onChange,
   onFull,
-  ...props
 }: Omit<ComponentProps<'input'>, 'onChange'> & {
   onFull?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onChange?: (v: string) => void;
@@ -48,6 +47,7 @@ const CardNumberInput = ({
       />
       -
       <Input
+        type="password"
         maxLength={4}
         onFull={handleFull}
         className="text-center"
@@ -57,13 +57,13 @@ const CardNumberInput = ({
       />
       -
       <Input
+        type="password"
         maxLength={4}
         onFull={onFull}
         className="text-center"
         name="input4"
         value={value.input4}
         onChange={handleChange}
-        onBlur={props.onBlur}
       />
     </InputBox>
   );

@@ -10,8 +10,7 @@ import InputBox from '../components/input/InputBox.tsx';
 import ExpireDateInput from '../components/input/ExpireDateInput.tsx';
 import PasswordInput from '../components/input/PasswordInput.tsx';
 import CvcInput from '../components/input/CvcInput.tsx';
-
-const INPUT_STYLE = 'bg-gray-200 p-3 rounded-md text-mint font-bold';
+import { focusNextInput } from '../components/input/util/InputUtil.tsx';
 
 const CreateCard = () => {
   const historyBack = useModalHistoryBack();
@@ -46,16 +45,24 @@ const CreateCard = () => {
           </button>
         </header>
         <section className="flex flex-col gap-4 mt-5">
-          <div className="w-fit m-auto">
-            <Card data={cardData} onClick={() => setDrawerOpen(true)} />
-          </div>
+          <TitleBox title="카드 선택">
+            <div className="w-fit m-auto" onClick={() => setDrawerOpen(true)}>
+              <Card data={cardData} />
+            </div>
+          </TitleBox>
 
           <TitleBox title="카드번호">
-            <CardNumberInput onChange={(v) => cardNumberHandler(v)} />
+            <CardNumberInput
+              onChange={(v) => cardNumberHandler(v)}
+              onFull={focusNextInput}
+            />
           </TitleBox>
 
           <TitleBox title="유효기간">
-            <ExpireDateInput onChange={(v) => expiredDateHandler(v)} />
+            <ExpireDateInput
+              onChange={(v) => expiredDateHandler(v)}
+              onFull={focusNextInput}
+            />
           </TitleBox>
 
           <TitleBox title="카드소유자">
