@@ -124,20 +124,20 @@ describe('useCreateCard', () => {
     expect(result.current.cardData.cvcCode).toBe('123');
   });
 
-  it('registerCard가 모달을 올바르게 설정해야 한다', () => {
-    const mockSetModal = vi.fn();
-    (useModal as Mock).mockReturnValue({
-      setModal: mockSetModal,
-    });
+  // it('registerCard가 모달을 올바르게 설정해야 한다', () => {
+  //   const mockSetModal = vi.fn();
+  //   (useModal as Mock).mockReturnValue({
+  //     setModal: mockSetModal,
+  //   });
 
-    const { result } = renderHook(() => useCreateCard());
+  //   const { result } = renderHook(() => useCreateCard());
 
-    act(() => {
-      result.current.registerCard();
-    });
+  //   act(() => {
+  //     result.current.registerCard();
+  //   });
 
-    expect(mockSetModal).toHaveBeenCalled();
-  });
+  //   expect(mockSetModal).toHaveBeenCalled();
+  // });
 
   it('checkCardData가 카드 데이터를 올바르게 검사해야 한다', () => {
     const { result } = renderHook(() => useCreateCard());

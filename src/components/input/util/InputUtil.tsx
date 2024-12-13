@@ -8,7 +8,6 @@ export const handleFull: React.ChangeEventHandler<HTMLInputElement> = (e) => {
 export const focusNextInput: React.ChangeEventHandler<HTMLInputElement> = (
   e
 ) => {
-  console.log('focusNextInput');
   const inputs = Array.from(document.querySelectorAll('input'));
 
   // 현재 이벤트가 발생한 요소

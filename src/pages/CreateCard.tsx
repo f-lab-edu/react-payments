@@ -11,9 +11,11 @@ import ExpireDateInput from '../components/input/ExpireDateInput.tsx';
 import PasswordInput from '../components/input/PasswordInput.tsx';
 import CvcInput from '../components/input/CvcInput.tsx';
 import { focusNextInput } from '../components/input/util/InputUtil.tsx';
+import NameInput from '../components/input/NameInput.tsx';
 
 const CreateCard = () => {
   const historyBack = useModalHistoryBack();
+  const [name, setName] = React.useState('');
   const {
     drawerOpen,
     setDrawerOpen,
@@ -65,15 +67,12 @@ const CreateCard = () => {
             />
           </TitleBox>
 
-          <TitleBox title="카드소유자">
-            <InputBox>
-              <Input
-                type="text"
-                placeholder="카드 소유자"
-                value={cardData.userName}
-                onChange={(v) => changeCardName(v.target.value)}
-              />
-            </InputBox>
+          <TitleBox title="카드소유자" subTitle={`${name.length} / 30`}>
+            <NameInput
+              onChange={(v) => {
+                setName(v);
+              }}
+            />
           </TitleBox>
 
           <TitleBox title="보안코드(CVC/CVV)">
@@ -98,13 +97,18 @@ const CreateCard = () => {
 
 const TitleBox = ({
   title,
+  subTitle,
   children,
 }: {
   title: ReactNode;
+  subTitle?: ReactNode;
   children: React.ReactNode;
 }) => (
   <div className="flex flex-col gap-1">
-    <Title>{title}</Title>
+    <div className="flex justify-between">
+      <Title>{title}</Title>
+      <Title>{subTitle}</Title>
+    </div>
     {children}
   </div>
 );

@@ -1,8 +1,9 @@
-import { ComponentProps, useEffect } from 'react';
+import { ComponentProps } from 'react';
 import Input from './Input';
 import InputBox from './InputBox';
 import { handleFull } from './util/InputUtil';
 import React from 'react';
+import useCardNumberInput from './hooks/useCardNumberInput';
 const CardNumberInput = ({
   onChange,
   onFull,
@@ -10,21 +11,7 @@ const CardNumberInput = ({
   onFull?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onChange?: (v: string) => void;
 }) => {
-  const [value, setValue] = React.useState({
-    input1: '',
-    input2: '',
-    input3: '',
-    input4: '',
-  });
-
-  useEffect(() => {
-    onChange?.(`${value.input1}${value.input2}${value.input3}${value.input4}`);
-  }, [value]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setValue((prev) => ({ ...prev, [name]: value }));
-  };
+  const { value, handleChange } = useCardNumberInput({ onChange });
 
   return (
     <InputBox className="flex items-center">

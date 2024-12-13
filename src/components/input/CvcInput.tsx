@@ -2,17 +2,13 @@ import React, { useEffect } from 'react';
 import NumberKeyPad from '../drawer/NumberKeyPad';
 import InputBox from './InputBox';
 import Input from './Input';
+import useCvcInput from './hooks/useCvcInput';
 
 interface CvcInputProps {
   onChange: (value: string) => void;
 }
 const CvcInput = ({ onChange }: CvcInputProps) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [value, setValue] = React.useState('');
-
-  useEffect(() => {
-    onChange(value);
-  }, [value]);
+  const { isOpen, setIsOpen, value, setValue } = useCvcInput({ onChange });
 
   return (
     <div>
