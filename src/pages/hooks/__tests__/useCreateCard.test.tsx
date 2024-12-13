@@ -151,7 +151,7 @@ describe('useCreateCard', () => {
         cvcCode: '123',
         expiredDate: '12/25',
         cardAlias: '홍길동 카드',
-        password: '1234',
+        password: '!3d0',
       })
     ).toBe(true);
   });
