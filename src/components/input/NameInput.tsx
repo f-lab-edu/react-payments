@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Input from './Input';
 import InputBox from './InputBox';
 import React from 'react';
@@ -9,16 +8,18 @@ interface NameInputProps {
 }
 const NameInput = ({ onChange, maxLength = 30 }: NameInputProps) => {
   const [value, setValue] = React.useState('');
-  useEffect(() => {
-    onChange?.(value);
-  }, [value]);
+
+  const handleChange = (v: string) => {
+    setValue(v);
+    onChange?.(v);
+  };
   return (
     <InputBox>
       <Input
         type="text"
         placeholder="카드 소유자"
         value={value}
-        onChange={(v) => setValue(v.target.value)}
+        onChange={(e) => handleChange(e.target.value)}
         maxLength={maxLength}
       />
     </InputBox>
