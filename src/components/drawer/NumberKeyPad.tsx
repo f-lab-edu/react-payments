@@ -2,15 +2,15 @@ import React, { ComponentProps, PropsWithChildren, useEffect } from 'react';
 import Drawer from './Drawer';
 interface NumberKeyPadProps {
   isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+  close: () => void;
   maxLength: number;
   callback: (value: string) => void;
 }
 const NumberKeyPad = ({
   isOpen,
-  setIsOpen,
   maxLength,
   callback,
+  close,
 }: NumberKeyPadProps) => {
   const [value, setValue] = React.useState('');
   useEffect(() => {
@@ -18,14 +18,14 @@ const NumberKeyPad = ({
   }, [isOpen]);
   useEffect(() => {
     if (value.length === maxLength) {
-      setIsOpen(false);
+      close();
       callback(value);
     }
   }, [value]);
   return (
     <Drawer
       isOpen={isOpen}
-      setIsOpen={setIsOpen}
+      setIsOpen={close}
       className="grid grid-cols-3 gap-1 bg-white p-3"
     >
       {[...Array(10).keys()].map((i) => (

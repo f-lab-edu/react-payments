@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 interface UseExpireDateInputProps {
   onChange?: (v: string) => void;
 }
 const useExpireDateInput = ({ onChange }: UseExpireDateInputProps) => {
-  const [value, setValue] = React.useState({
+  const [, setValue] = React.useState({
     input1: '',
     input2: '',
   });
 
-  useEffect(() => {
-    onChange?.(`${value.input1}${value.input2}`);
-  }, [value]);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setValue((prev) => ({ ...prev, [name]: value }));
+    setValue((prev) => {
+      const newValue = { ...prev, [name]: value };
+      onChange?.(`${newValue.input1}${newValue.input2}`);
+      return newValue;
+    });
   };
   return {
     handleChange,

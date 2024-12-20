@@ -5,7 +5,7 @@ import CreateCardComplete from '../CreateCardComplete.tsx';
 
 export default function useCreateCard() {
   const { setModal } = useModal();
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(true);
   const [cardData, setCardData] = useState<CardType>({
     cardCompany: '',
     cardColor: '',

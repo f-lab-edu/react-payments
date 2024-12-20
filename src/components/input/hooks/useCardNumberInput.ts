@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 interface UseCardNumberInputProps {
   onChange?: (v: string) => void;
@@ -11,13 +11,15 @@ const useCardNumberInput = ({ onChange }: UseCardNumberInputProps) => {
     input4: '',
   });
 
-  useEffect(() => {
-    onChange?.(`${value.input1}${value.input2}${value.input3}${value.input4}`);
-  }, [value]);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setValue((prev) => ({ ...prev, [name]: value }));
+    const { name, value: inputValue } = e.target;
+    setValue((prev) => {
+      const newValue = { ...prev, [name]: inputValue };
+      onChange?.(
+        `${newValue.input1}${newValue.input2}${newValue.input3}${newValue.input4}`
+      );
+      return newValue;
+    });
   };
 
   return {

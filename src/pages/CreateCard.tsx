@@ -1,21 +1,20 @@
-import React, { ReactNode } from 'react';
+import React, { ChangeEvent, ReactNode } from 'react';
 import ArrowIcon from '../components/icons/ArrowIcon';
 import Card from '../components/Card';
 import SelectCardCompany from '../components/drawer/SelectCardCompany.tsx';
 import useCreateCard from './hooks/useCreateCard.tsx';
 import useModalHistoryBack from '../contexts/hooks/useModalHistoryBack.ts';
-import Input from '../components/input/Input.tsx';
 import CardNumberInput from '../components/input/CardNumberInput.tsx';
-import InputBox from '../components/input/InputBox.tsx';
 import ExpireDateInput from '../components/input/ExpireDateInput.tsx';
 import PasswordInput from '../components/input/PasswordInput.tsx';
 import CvcInput from '../components/input/CvcInput.tsx';
 import { focusNextInput } from '../components/input/util/InputUtil.tsx';
 import NameInput from '../components/input/NameInput.tsx';
+import useCardName, { DEFAULT_MAX_SIZE } from './hooks/useCardName.ts';
 
 const CreateCard = () => {
   const historyBack = useModalHistoryBack();
-  const [name, setName] = React.useState('');
+
   const {
     drawerOpen,
     setDrawerOpen,
@@ -28,6 +27,8 @@ const CreateCard = () => {
     cardCvcHandler,
     passwordHandler,
   } = useCreateCard();
+
+  const cardName = useCardName(DEFAULT_MAX_SIZE, changeCardName);
 
   return (
     <>
@@ -67,12 +68,8 @@ const CreateCard = () => {
             />
           </TitleBox>
 
-          <TitleBox title="카드소유자" subTitle={`${name.length} / 30`}>
-            <NameInput
-              onChange={(v) => {
-                setName(v);
-              }}
-            />
+          <TitleBox title="카드소유자" subTitle={cardName.size}>
+            <NameInput onChange={cardName.onChange} />
           </TitleBox>
 
           <TitleBox title="보안코드(CVC/CVV)">

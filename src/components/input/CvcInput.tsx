@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
 import NumberKeyPad from '../drawer/NumberKeyPad';
 import InputBox from './InputBox';
 import Input from './Input';
 import useCvcInput from './hooks/useCvcInput';
+import useToggle from './hooks/useToggle';
 
 interface CvcInputProps {
   onChange: (value: string) => void;
 }
 const CvcInput = ({ onChange }: CvcInputProps) => {
-  const { isOpen, setIsOpen, value, setValue } = useCvcInput({ onChange });
-
+  const { value, update } = useCvcInput({ onChange });
+  const { isOpen, open, close } = useToggle();
   return (
     <div>
       <InputBox className="w-14">
@@ -17,14 +17,14 @@ const CvcInput = ({ onChange }: CvcInputProps) => {
           value={value}
           className="text-center"
           type="password"
-          onFocus={() => setIsOpen(true)}
+          onFocus={open}
         />
       </InputBox>
       <NumberKeyPad
         isOpen={isOpen}
-        setIsOpen={setIsOpen}
+        close={close}
         maxLength={3}
-        callback={(v) => setValue(v)}
+        callback={update}
       />
     </div>
   );

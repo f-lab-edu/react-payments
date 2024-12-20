@@ -1,21 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 interface UseCvcInputProps {
   onChange?: (v: string) => void;
 }
 const useCvcInput = ({ onChange }: UseCvcInputProps) => {
-  const [isOpen, setIsOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
 
-  useEffect(() => {
-    onChange?.(value);
-  }, [value]);
+  const update = (v: string) => {
+    setValue(v);
+    onChange?.(v);
+  };
 
   return {
-    isOpen,
-    setIsOpen,
     value,
-    setValue,
+    update,
   };
 };
 
