@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import ArrowIcon from '../components/icons/ArrowIcon';
 import Card from '../components/Card';
 import SelectCardCompany from '../components/drawer/SelectCardCompany.tsx';

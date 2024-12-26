@@ -1,4 +1,4 @@
-import React, { ComponentProps, useEffect } from 'react';
+import React, { ComponentProps } from 'react';
 import InputBox from './InputBox';
 import Input from './Input';
 import { handleFull } from './util/InputUtil';

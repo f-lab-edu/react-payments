@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import useCreateCard from '../useCreateCard';
 import { useModal } from '../../../contexts/hooks/useModal';
-import { vi, describe, beforeEach, it, expect, Mock } from 'vitest';
+import { vi, describe, beforeEach, it, expect } from 'vitest';
 
 // useModal mock
 vi.mock('../../../contexts/hooks/useModal', () => ({
