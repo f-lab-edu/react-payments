@@ -8,9 +8,26 @@ const Modal = () => {
   const ref = useOutsideClick(handleModalClose);
 
   return isOpen ? (
-    <div className="flex fixed inset-0 justify-center items-center bg-gray-300 w-full h-screen backdrop-blur-sm">
+    <div
+      style={{
+        display: 'flex',
+        position: 'fixed',
+        inset: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backdropFilter: 'blur(10px)',
+      }}
+    >
       <div
-        className="relative w-[375px] h-[700px] bg-white m-auto rounded-lg"
+        style={{
+          position: 'relative',
+          width: '375px',
+          height: '700px',
+          backgroundColor: 'white',
+          margin: 'auto',
+          borderRadius: '10px',
+        }}
         ref={ref}
       >
         {content}

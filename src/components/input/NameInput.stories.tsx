@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import NameInput from './NameInput';
 
-const meta = {
+const meta: Meta<typeof NameInput> = {
   title: 'Components/Input/NameInput',
   component: NameInput,
   parameters: {

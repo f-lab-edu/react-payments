@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import ExpireDateInput from './ExpireDateInput';
 
-const meta = {
+const meta: Meta<typeof ExpireDateInput> = {
   title: 'Components/Input/ExpireDateInput',
   component: ExpireDateInput,
   parameters: {

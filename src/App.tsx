@@ -1,14 +1,36 @@
 import PaymentMain from './pages/PaymentMain';
 import { useModal } from './contexts/hooks/useModal.tsx';
+import { colors } from './constants/color.ts';
 
 function App() {
   const { setModal } = useModal();
   return (
-    <div className="w-full h-screen flex items-center justify-center">
-      <div className="max-w-screen-md text-center">
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 'screen-md',
+          textAlign: 'center',
+        }}
+      >
         <div>결제 모듈 미션</div>
         <button
-          className="bg-mint p-2 text-white mt-5"
+          style={{
+            backgroundColor: colors.mint,
+            padding: '8px',
+            color: 'white',
+            marginTop: '20px',
+            border: 'none',
+            borderRadius: '10px',
+            cursor: 'pointer',
+          }}
           onClick={() => setModal(<PaymentMain />)}
         >
           모달 열기

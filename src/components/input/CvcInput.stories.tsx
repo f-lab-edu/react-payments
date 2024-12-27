@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import CvcInput from './CvcInput';
 
-const meta = {
+const meta: Meta<typeof CvcInput> = {
   title: 'Components/Input/CvcInput',
   component: CvcInput,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof CvcInput>;
+};
 
 export default meta;
 type Story = StoryObj<typeof CvcInput>;
