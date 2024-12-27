@@ -3,20 +3,37 @@ import { useOutsideClick } from '../../hook/useOutsideClick';
 
 interface DrawerProps {
   isOpen: boolean;
-  className?: string;
+  style?: React.CSSProperties;
   setIsOpen: (isOpen: boolean) => void;
 }
 const Drawer = ({
   isOpen,
-  className,
+  style,
   setIsOpen,
   children,
 }: DrawerProps & PropsWithChildren) => {
   const ref = useOutsideClick(() => setIsOpen(false));
   return (
     isOpen && (
-      <div className="absolute top-0 left-0 bg-gray-300 bg-opacity-50 w-full h-full">
-        <div ref={ref} className={`absolute bottom-0 w-full ${className}`}>
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        }}
+      >
+        <div
+          ref={ref}
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            width: '100%',
+            ...style,
+          }}
+        >
           {children}
         </div>
       </div>

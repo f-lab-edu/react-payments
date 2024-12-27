@@ -34,10 +34,21 @@ const Carousel = ({
   };
 
   return (
-    <div className="relative">
+    <div style={{ position: 'relative' }}>
       <div
-        className="relative h-[200px] flex bg-gray-100 w-full m-auto overflow-hidden text-center items-center"
-        style={{ maxWidth: width }}
+        style={{
+          position: 'relative',
+          height: '200px',
+          display: 'flex',
+          backgroundColor: '#f0f0f0',
+          width: '100%',
+          margin: 'auto',
+          overflow: 'hidden',
+          textAlign: 'center',
+          alignItems: 'center',
+          maxWidth: width,
+          boxSizing: 'border-box',
+        }}
       >
         {nodes.map((node, i) => (
           <CarouselItem key={i} index={i} currentIndex={currentIndex}>
@@ -46,14 +57,27 @@ const Carousel = ({
         ))}
       </div>
       <button
-        className={`absolute top-1/2 left-2 ${currentIndex === 0 && 'opacity-50 cursor-not-allowed'}`}
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '2px',
+          opacity: currentIndex === 0 ? '0.5' : '1',
+          cursor: currentIndex === 0 ? 'not-allowed' : 'pointer',
+        }}
         onClick={subIndex}
         disabled={currentIndex === 0}
       >
         <ArrowIcon alt="이전 카드" />
       </button>
       <button
-        className={`absolute top-1/2 right-2 rotate-180 ${currentIndex === nodes.length - 1 && 'opacity-50 cursor-not-allowed'}`}
+        style={{
+          position: 'absolute',
+          top: '50%',
+          right: '2px',
+          transform: 'rotate(180deg)',
+          opacity: currentIndex === nodes.length - 1 ? '0.5' : '1',
+          cursor: currentIndex === nodes.length - 1 ? 'not-allowed' : 'pointer',
+        }}
         onClick={addIndex}
         disabled={currentIndex === nodes.length - 1}
       >
@@ -74,10 +98,17 @@ const CarouselItem = ({
 }) => {
   return (
     <div
-      className="absolute transition-all duration-500 ease-in-out transform items-center flex justify-center"
+      // className="absolute transition-all duration-500 ease-in-out transform items-center flex justify-center"
       style={{
-        width: WIDTH - SPACING * 2,
-        left: SPACING + (index - currentIndex) * (WIDTH - SPACING * 2),
+        position: 'absolute',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: WIDTH, // - SPACING * 2,
+        // left: SPACING + (index - currentIndex) * (WIDTH - SPACING * 2),
+        left: (index - currentIndex) * WIDTH,
+        transition: 'all 0.5s ease-in-out',
+        boxSizing: 'border-box',
       }}
     >
       {children}

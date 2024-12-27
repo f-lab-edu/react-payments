@@ -12,10 +12,10 @@ const CvcInput = ({ onChange }: CvcInputProps) => {
   const { isOpen, open, close } = useToggle();
   return (
     <div>
-      <InputBox className="w-14">
+      <InputBox style={{ width: '3.5rem' }}>
         <Input
           value={value}
-          className="text-center"
+          style={{ textAlign: 'center' }}
           type="password"
           onFocus={open}
         />

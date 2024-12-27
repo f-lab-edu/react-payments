@@ -1,11 +1,15 @@
 import { PropsWithChildren } from 'react';
 
 const InputBox = ({
-  className,
+  style,
   children,
-}: PropsWithChildren & { className?: string }) => {
+}: PropsWithChildren & { style?: React.CSSProperties }) => {
   return (
-    <div className={`bg-gray-200 rounded-md ${className}`}>{children}</div>
+    <div
+      style={{ backgroundColor: '#F2F2F2', borderRadius: '0.5rem', ...style }}
+    >
+      {children}
+    </div>
   );
 };
 

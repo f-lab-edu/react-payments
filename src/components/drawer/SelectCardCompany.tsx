@@ -19,19 +19,40 @@ const SelectCardCompany = ({
     <Drawer
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      className="bg-white  grid grid-cols-4 p-7 gap-5"
+      //  className="bg-white  grid grid-cols-4 p-7 gap-5"
+      style={{
+        backgroundColor: 'white',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+        padding: '1.25rem',
+        gap: '0.75rem',
+        boxSizing: 'border-box',
+      }}
     >
       {COMPANY_INFO.map((company, idx) => (
         <button
           key={idx}
           onClick={() => handleSelect(company.name, company.color)}
-          className="flex flex-col items-center justify-center w-full h-20"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            height: '5rem',
+            border: 'none',
+            backgroundColor: 'transparent',
+          }}
         >
           <div
-            className="w-9 aspect-square rounded-full"
-            style={{ backgroundColor: company.color }}
+            style={{
+              width: '2.25rem',
+              aspectRatio: '1/1',
+              borderRadius: '50%',
+              backgroundColor: company.color,
+            }}
           ></div>
-          <span className="mt-3">{company.name}</span>
+          <span style={{ marginTop: '0.75rem' }}>{company.name}</span>
         </button>
       ))}
     </Drawer>

@@ -14,11 +14,11 @@ const CardNumberInput = ({
   const { value, handleChange } = useCardNumberInput({ onChange });
 
   return (
-    <InputBox className="flex items-center">
+    <InputBox style={{ display: 'flex', alignItems: 'center' }}>
       <Input
         maxLength={4}
         onFull={handleFull}
-        className="text-center"
+        style={{ textAlign: 'center' }}
         name="input1"
         value={value.input1}
         onChange={handleChange}
@@ -27,7 +27,7 @@ const CardNumberInput = ({
       <Input
         maxLength={4}
         onFull={handleFull}
-        className="text-center"
+        style={{ textAlign: 'center' }}
         name="input2"
         value={value.input2}
         onChange={handleChange}
@@ -37,7 +37,7 @@ const CardNumberInput = ({
         type="password"
         maxLength={4}
         onFull={handleFull}
-        className="text-center"
+        style={{ textAlign: 'center' }}
         name="input3"
         value={value.input3}
         onChange={handleChange}
@@ -47,7 +47,7 @@ const CardNumberInput = ({
         type="password"
         maxLength={4}
         onFull={onFull}
-        className="text-center"
+        style={{ textAlign: 'center' }}
         name="input4"
         value={value.input4}
         onChange={handleChange}

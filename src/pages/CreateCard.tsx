@@ -11,6 +11,7 @@ import CvcInput from '../components/input/CvcInput.tsx';
 import { focusNextInput } from '../components/input/util/InputUtil.tsx';
 import NameInput from '../components/input/NameInput.tsx';
 import useCardName, { DEFAULT_MAX_SIZE } from './hooks/useCardName.ts';
+import { colors } from '../constants/color.ts';
 
 const CreateCard = () => {
   const historyBack = useModalHistoryBack();
@@ -37,11 +38,16 @@ const CreateCard = () => {
         setIsOpen={setDrawerOpen}
         selectCallback={companyHandler}
       />
-      <div className="p-5">
+      <div style={{ padding: '1.25rem' }}>
         <header>
           <button
             onClick={historyBack}
-            className="flex items-center justify-center gap-5"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.75rem',
+            }}
           >
             <ArrowIcon alt="뒤로가기" />
             카드추가
@@ -49,7 +55,13 @@ const CreateCard = () => {
         </header>
         <section className="flex flex-col gap-4 mt-5">
           <TitleBox title="카드 선택">
-            <div className="w-fit m-auto" onClick={() => setDrawerOpen(true)}>
+            <div
+              style={{
+                width: 'fit-content',
+                margin: 'auto',
+              }}
+              onClick={() => setDrawerOpen(true)}
+            >
               <Card data={cardData} />
             </div>
           </TitleBox>
@@ -81,7 +93,12 @@ const CreateCard = () => {
           </TitleBox>
 
           <button
-            className="bg-mint text-white p-2 rounded-lg"
+            style={{
+              backgroundColor: colors.mint,
+              color: 'white',
+              padding: '0.5rem 1rem',
+              borderRadius: '0.5rem',
+            }}
             onClick={registerCard}
           >
             등록
@@ -101,8 +118,14 @@ const TitleBox = ({
   subTitle?: ReactNode;
   children: React.ReactNode;
 }) => (
-  <div className="flex flex-col gap-1">
-    <div className="flex justify-between">
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.25rem',
+    }}
+  >
+    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
       <Title>{title}</Title>
       <Title>{subTitle}</Title>
     </div>
@@ -111,7 +134,9 @@ const TitleBox = ({
 );
 
 const Title = ({ children }: { children: React.ReactNode }) => (
-  <div className="text-xs text-gray-600">{children}</div>
+  <div style={{ fontSize: '0.75rem', lineHeight: '1rem', color: '#666' }}>
+    {children}
+  </div>
 );
 
 export default CreateCard;
