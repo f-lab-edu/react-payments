@@ -5,7 +5,6 @@ import Card from '../components/Card';
 import CreateCard from './CreateCard';
 import useCardStorage from '../storage/useCardStorage.ts';
 import CardList from './CardList';
-import { colors } from '../constants/color.ts';
 
 const PaymentMain = () => {
   const { setModal, closeModal } = useModal();
@@ -22,77 +21,37 @@ const PaymentMain = () => {
   };
 
   return (
-    <div
-      // className="relative p-5 h-full"
-      style={{
-        position: 'relative',
-        height: '100%',
-        padding: '1.25rem',
-        boxSizing: 'border-box',
-      }}
-    >
+    <div className="relative p-5 h-full">
       <header>
-        <span
-          // className="bg-mint text-white px-1 font-bold"
-          style={{
-            backgroundColor: colors.mint,
-            padding: '4px 0px',
-            color: 'white',
-            fontWeight: 'bold',
-          }}
-        >
-          MNT
-        </span>{' '}
-        Pay{' '}
-        <span
-          // className="border-l-2 border-mint"
-          style={{
-            borderLeft: `2px solid ${colors.mint}`,
-          }}
-        >
-          결제
-        </span>
+        <span className="bg-mint text-white px-1 font-bold">MNT</span> Pay{' '}
+        <span className="border-l-2 border-mint">결제</span>
       </header>
-      <section
-        // className="flex flex-col gap-5 mt-5"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '20px',
-          marginTop: '20px',
-        }}
-      >
+      <section className="flex flex-col gap-5 mt-5">
         <Box title={'보유카드'}>
           <Carousel>
             {Cards?.map((card, i) => (
               <div key={i}>
                 <Card data={card} onClick={() => setModal(<CardList />)} />
-                <div
-                  style={{
-                    marginTop: '0.75rem',
-                  }}
-                >
-                  {card.cardAlias}
-                </div>
+                <div className="mt-3">{card.cardAlias}</div>
               </div>
             ))}
             <div>
               <Card onClick={() => setModal(<CreateCard />)} />
-              <div style={{ marginTop: '0.75rem' }}>신규등록</div>
+              <div className="mt-3">신규등록</div>
             </div>
           </Carousel>
         </Box>
         <Box title={'결제금액'}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div className="flex justify-between">
             <UnderLine>총 결제금액</UnderLine>
             <UnderLine>325,600원</UnderLine>
           </div>
         </Box>
         <Box title={'약관 이용 및 동의'}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+          <div className="flex flex-col gap-5 text-xs font-bold">
             <div>
               거래정보 제공 동의 : NEXTSTEP{' '}
-              <span style={{ color: '#575757', textDecoration: 'underline' }}>
+              <span className="text-gray-500 underline decoration-gray-500">
                 상세보기
               </span>
             </div>
@@ -100,7 +59,7 @@ const PaymentMain = () => {
               주문 내용을 확인하였으며, 정보 제공 등에 동의합니다.
               <input
                 type="checkbox"
-                style={{ marginLeft: '5px' }}
+                className="ml-2"
                 checked={isAgree}
                 onChange={checkboxHandler}
               />
@@ -108,41 +67,16 @@ const PaymentMain = () => {
           </div>
         </Box>
       </section>
-      <footer
-        // className="absolute left-0 bottom-0 w-full grid grid-cols-2 gap-5 p-5"
-        style={{
-          position: 'absolute',
-          left: '0',
-          bottom: '0',
-          width: '100%',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-          gap: '10px',
-          padding: '10px',
-          boxSizing: 'border-box',
-        }}
-      >
+      <footer className="absolute left-0 bottom-0 w-full grid grid-cols-2 gap-5 p-5">
         <button
-          // className="w-full h-12 bg-mint text-white"
-          style={{
-            width: '100%',
-            height: '40px',
-            backgroundColor: colors.mint,
-            color: 'white',
-          }}
+          className="w-full h-12 bg-mint text-white"
           onClick={purchaseHandler}
           disabled={!isAgree}
         >
           결제하기
         </button>
         <button
-          // className="w-full h-12 bg-gray-300 text-white"
-          style={{
-            width: '100%',
-            height: '40px',
-            backgroundColor: '#e2e8f0',
-            color: 'white',
-          }}
+          className="w-full h-12 bg-gray-300 text-white"
           onClick={closeModal}
         >
           취소하기
@@ -159,34 +93,16 @@ const Box = ({
   title: ReactNode;
   children: ReactNode;
 }) => (
-  <div style={{ width: '100%' }}>
-    <div
-      style={{
-        borderBottom: '2px solid #e2e8f0',
-        paddingBottom: '10px',
-      }}
-    >
-      {title}
-    </div>
-    <div style={{ marginTop: '20px' }}>{children}</div>
+  <div className="w-full">
+    <div className="border-b-2 border-gray-200 pb-2">{title}</div>
+    <div className="mt-5">{children}</div>
   </div>
 );
 
 const UnderLine = ({ children }: { children: ReactNode }) => (
-  <div style={{ position: 'relative' }}>
-    <div
-      style={{
-        position: 'absolute',
-        bottom: '3px',
-        backgroundColor: colors.mint,
-        height: '1px',
-        width: '100%',
-        zIndex: '0',
-      }}
-    />
-    <div style={{ position: 'relative', zIndex: '1', fontWeight: 'bold' }}>
-      {children}
-    </div>
+  <div className="relative">
+    <div className="absolute bottom-[3px] bg-mint h-1 w-full z-0" />
+    <div className="relative z-1 font-bold">{children}</div>
   </div>
 );
 export default PaymentMain;

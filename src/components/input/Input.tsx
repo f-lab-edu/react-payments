@@ -1,9 +1,8 @@
 import { ComponentProps } from 'react';
-import { colors } from '../../constants/color';
 
 const Input = ({
   onFull,
-  style,
+  className,
   ...props
 }: {
   onFull?: React.ChangeEventHandler<HTMLInputElement>;
@@ -16,17 +15,7 @@ const Input = ({
   };
   return (
     <input
-      style={{
-        backgroundColor: 'transparent',
-        padding: '0.75rem',
-        fontWeight: 'bold',
-        width: '100%',
-        color: colors.mint,
-        border: 'none',
-        textAlign: 'center',
-        boxSizing: 'border-box',
-        ...style,
-      }}
+      className={`bg-transparent p-3 text-mint font-bold w-full ${className}`}
       {...props}
       onChange={handleFull}
     />

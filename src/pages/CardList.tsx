@@ -15,49 +15,24 @@ const CardList = () => {
     removeCard(cardNumber);
   };
   return (
-    <div
-      style={{
-        padding: '1rem',
-        height: '100%',
-        overflowY: 'auto',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
+    <div className="p-5 h-full overflow-y-auto">
+      <div className="flex justify-between">
         <div>보유카드</div>
         <div onClick={() => setModal(<PaymentMain />)}>X</div>
       </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem',
-          alignItems: 'center',
-          padding: '1rem',
-        }}
-      >
+      <div className="flex flex-col gap-5 items-center p-5">
         {Cards.map((card: CardType) => (
-          <div key={card.cardNumber} style={{ position: 'relative' }}>
+          <div key={card.cardNumber} className="relative">
             <div>
               <Card
                 data={card}
                 onClick={() => setModal(<CreateCardComplete card={card} />)}
               />
-              <div style={{ textAlign: 'center', marginTop: '0.75rem' }}>
-                {card.cardAlias}
-              </div>
+              <div className="text-center mt-3">{card.cardAlias}</div>
             </div>
             <button
               onClick={() => removeHandler(card.cardNumber)}
-              style={{
-                position: 'absolute',
-                right: '0.75rem',
-                top: '0.75rem',
-              }}
+              className="absolute right-3 top-3 "
             >
               삭제
             </button>

@@ -16,12 +16,14 @@ type Story = StoryObj<typeof InputBox>;
 export const Default: Story = {
   args: {
     children: 'Input Box Content',
+    className: 'p-4',
   },
 };
 
 export const WithCustomStyle: Story = {
   args: {
     children: 'Custom Styled Input Box',
+    className: 'p-6 bg-red-300',
   },
 };
 
@@ -33,5 +35,6 @@ export const WithNestedContent: Story = {
         <p>This is nested content inside InputBox</p>
       </div>
     ),
+    className: 'p-4',
   },
 };

@@ -15,14 +15,12 @@ const ExpireDateInput = ({
 }: Omit<ComponentProps<'input'>, 'onChange'> & ExpireDateInputProps) => {
   const { handleChange } = useExpireDateInput({ onChange });
   return (
-    <InputBox
-      style={{ display: 'flex', alignItems: 'center', maxWidth: '10rem' }}
-    >
+    <InputBox className="flex items-center max-w-40">
       <Input
         maxLength={2}
         onFull={handleFull}
         name="input1"
-        style={{ textAlign: 'center' }}
+        className="text-center"
         onChange={handleChange}
       />
       /
@@ -30,7 +28,7 @@ const ExpireDateInput = ({
         maxLength={2}
         onFull={onFull}
         name="input2"
-        style={{ textAlign: 'center' }}
+        className="text-center"
         onChange={handleChange}
         onBlur={props?.onBlur}
       />
