@@ -33,7 +33,7 @@ function App() {
           }}
           onClick={() => setModal(<PaymentMain />)}
         >
-          모달 열기
+          모달 열기 8
         </button>
       </div>
     </div>
