@@ -1,4 +1,3 @@
-import React from 'react';
 import { ModalProvider } from './contexts/ModalContext.tsx';
 import App from './App.tsx';
 import { CardProvider } from './contexts/CardContext.tsx';

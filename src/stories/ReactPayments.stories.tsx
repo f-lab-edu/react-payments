@@ -19,14 +19,18 @@ export const Default: Story = {
   },
 };
 
-export const WithCustomStyles: Story = {
-  args: {
-    // 커스텀 스타일 props 예시
-  },
+export const MultipleComponents: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <ReactPayments />
+      <ReactPayments />
+      <ReactPayments />
+    </div>
+  ),
   parameters: {
     docs: {
       description: {
-        story: '결제 모듈의 기본 사용 예시입니다.',
+        story: '여러 결제 모듈을 동시에 표시하는 예시입니다.',
       },
     },
   },
