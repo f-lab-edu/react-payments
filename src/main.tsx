@@ -1,15 +1,16 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
-import { ModalProvider } from './contexts/ModalContext.tsx';
-import { CardProvider } from './contexts/CardContext.tsx';
+import ReactPayments from './index.tsx';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <CardProvider>
-      <ModalProvider>
-        <App />
-      </ModalProvider>
-    </CardProvider>
-  </StrictMode>
+  <div
+    style={{
+      width: '100%',
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <ReactPayments />
+  </div>
 );

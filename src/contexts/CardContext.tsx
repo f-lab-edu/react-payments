@@ -4,6 +4,7 @@ import { CardType } from '../storage/cardType.ts';
 
 const CardContext = createContext({
   Cards: [] as CardType[],
+  initCards: (): void => undefined,
   addCard: (_: CardType): void => undefined,
   removeCard: (_: string): void => undefined,
   getCard: (_: string): CardType | undefined => undefined,
@@ -15,6 +16,11 @@ export const useCardContext = () => useContext(CardContext);
 
 export const CardProvider = ({ children }: PropsWithChildren) => {
   const [Cards, setCards] = useState(() => cardStorage.get());
+
+  const initCards = () => {
+    const cards = cardStorage.get();
+    setCards(cards);
+  };
 
   const updateCards = (newCards: CardType[]) => {
     cardStorage.set(newCards);
@@ -51,6 +57,7 @@ export const CardProvider = ({ children }: PropsWithChildren) => {
 
   const contextValue = {
     Cards,
+    initCards,
     addCard,
     getCard,
     removeCard,
