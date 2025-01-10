@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Card from '../components/Card';
-import { CardType } from '../storage/cardType.ts';
-import useCardStorage from '../storage/useCardStorage.ts';
-import { useModal } from '../contexts/hooks/useModal.tsx';
+import { CardType } from '../storage/cardType';
+import useCardStorage from '../storage/useCardStorage';
+import { useModal } from '../contexts/hooks/useModal';
 import CardList from './CardList';
 
 interface CreateCardCompleteProps {

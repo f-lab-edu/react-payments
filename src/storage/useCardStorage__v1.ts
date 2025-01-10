@@ -1,5 +1,5 @@
-import { CardType } from './cardType.ts';
-import { createStorage } from './createStorage.ts';
+import { CardType } from './cardType';
+import { createStorage } from './createStorage';
 import { useSyncExternalStore } from 'react';
 
 const cardStorage = createStorage<CardType[]>('cards');

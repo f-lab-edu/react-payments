@@ -1,4 +1,4 @@
-import { CardType } from '../storage/cardType.ts';
+import { CardType } from '../storage/cardType';
 
 interface CardProps {
   data?: CardType;

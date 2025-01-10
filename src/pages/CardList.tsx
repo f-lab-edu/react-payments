@@ -1,9 +1,9 @@
-import useCardStorage from '../storage/useCardStorage.ts';
+import useCardStorage from '../storage/useCardStorage';
 import Card from '../components/Card';
-import { useModal } from '../contexts/hooks/useModal.tsx';
+import { useModal } from '../contexts/hooks/useModal';
 import CreateCard from './CreateCard';
 import PaymentMain from './PaymentMain';
-import { CardType } from '../storage/cardType.ts';
+import { CardType } from '../storage/cardType';
 import CreateCardComplete from './CreateCardComplete';
 
 const CardList = () => {

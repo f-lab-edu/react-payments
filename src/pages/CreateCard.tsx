@@ -1,16 +1,16 @@
 import React, { ReactNode } from 'react';
 import ArrowIcon from '../components/icons/ArrowIcon';
 import Card from '../components/Card';
-import SelectCardCompany from '../components/drawer/SelectCardCompany.tsx';
-import useCreateCard from './hooks/useCreateCard.tsx';
-import useModalHistoryBack from '../contexts/hooks/useModalHistoryBack.ts';
-import CardNumberInput from '../components/input/CardNumberInput.tsx';
-import ExpireDateInput from '../components/input/ExpireDateInput.tsx';
-import PasswordInput from '../components/input/PasswordInput.tsx';
-import CvcInput from '../components/input/CvcInput.tsx';
-import { focusNextInput } from '../components/input/util/InputUtil.tsx';
-import NameInput from '../components/input/NameInput.tsx';
-import useCardName, { DEFAULT_MAX_SIZE } from './hooks/useCardName.ts';
+import SelectCardCompany from '../components/drawer/SelectCardCompany';
+import useCreateCard from './hooks/useCreateCard';
+import useModalHistoryBack from '../contexts/hooks/useModalHistoryBack';
+import CardNumberInput from '../components/input/CardNumberInput';
+import ExpireDateInput from '../components/input/ExpireDateInput';
+import PasswordInput from '../components/input/PasswordInput';
+import CvcInput from '../components/input/CvcInput';
+import { focusNextInput } from '../components/input/util/InputUtil';
+import NameInput from '../components/input/NameInput';
+import useCardName, { DEFAULT_MAX_SIZE } from './hooks/useCardName';
 
 const CreateCard = () => {
   const historyBack = useModalHistoryBack();

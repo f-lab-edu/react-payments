@@ -1,4 +1,4 @@
-import { useModal } from './useModal.tsx';
+import { useModal } from './useModal';
 
 export default function useModalHistoryBack() {
   const { historyBack } = useModal();

@@ -1,4 +1,4 @@
-import { useModal } from '../contexts/hooks/useModal.tsx';
+import { useModal } from '../contexts/hooks/useModal';
 import { useOutsideClick } from '../hook/useOutsideClick';
 const Modal = () => {
   const { isOpen, content, closeModal } = useModal();

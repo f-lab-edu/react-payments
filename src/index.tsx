@@ -1,16 +1,18 @@
 import React from 'react';
-import { ModalProvider } from './contexts/ModalContext.tsx';
-import App from './App.tsx';
-import { CardProvider } from './contexts/CardContext.tsx';
+import App from './App';
+import { ModalProvider } from './contexts/ModalContext';
+import { CardProvider } from './contexts/CardContext';
 
-export const ReactPayments = () => {
-  return (
-    <CardProvider>
-      <ModalProvider>
-        <App />
-      </ModalProvider>
-    </CardProvider>
-  );
-};
+class ReactPayments extends React.Component {
+  render() {
+    return (
+      <CardProvider>
+        <ModalProvider>
+          <App />
+        </ModalProvider>
+      </CardProvider>
+    );
+  }
+}
 
 export default ReactPayments;

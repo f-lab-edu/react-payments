@@ -1,9 +1,9 @@
 import { ReactNode, useState } from 'react';
-import { useModal } from '../contexts/hooks/useModal.tsx';
+import { useModal } from '../contexts/hooks/useModal';
 import Carousel from '../components/Carousel';
 import Card from '../components/Card';
 import CreateCard from './CreateCard';
-import useCardStorage from '../storage/useCardStorage.ts';
+import useCardStorage from '../storage/useCardStorage';
 import CardList from './CardList';
 
 const PaymentMain = () => {

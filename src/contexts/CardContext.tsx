@@ -1,6 +1,6 @@
 import { createContext, PropsWithChildren, useContext, useState } from 'react';
-import { createStorage } from '../storage/createStorage.ts';
-import { CardType } from '../storage/cardType.ts';
+import { createStorage } from '../storage/createStorage';
+import { CardType } from '../storage/cardType';
 
 const CardContext = createContext({
   Cards: [] as CardType[],

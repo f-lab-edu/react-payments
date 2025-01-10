@@ -1,7 +1,7 @@
-import { useModal } from '../../contexts/hooks/useModal.tsx';
 import { useState } from 'react';
-import { CardType } from '../../storage/cardType.ts';
-import CreateCardComplete from '../CreateCardComplete.tsx';
+import { useModal } from '../../contexts/hooks/useModal';
+import { CardType } from '../../storage/cardType';
+import CreateCardComplete from '../CreateCardComplete';
 
 export default function useCreateCard() {
   const { setModal } = useModal();
