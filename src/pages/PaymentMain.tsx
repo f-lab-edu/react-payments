@@ -1,4 +1,4 @@
-import { ReactNode, useState, useLayoutEffect } from 'react';
+import { ReactNode, useState } from 'react';
 import { useModal } from '../contexts/hooks/useModal.tsx';
 import Carousel from '../components/Carousel';
 import Card from '../components/Card';
@@ -9,11 +9,7 @@ import { useCardContext } from '../contexts/CardContext.tsx';
 const PaymentMain = () => {
   const { setModal, closeModal } = useModal();
   const [isAgree, setIsAgree] = useState(false);
-  const { Cards, initCards } = useCardContext();
-
-  useLayoutEffect(() => {
-    initCards();
-  }, []);
+  const { Cards } = useCardContext();
 
   const purchaseHandler = () => {
     alert('결제가 완료되었습니다.');

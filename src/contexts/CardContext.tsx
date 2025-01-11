@@ -1,30 +1,26 @@
 import { createContext, PropsWithChildren, useContext, useState } from 'react';
-import { createStorage } from '../storage/createStorage.ts';
 import { CardType } from '../storage/cardType.ts';
 
 const CardContext = createContext({
   Cards: [] as CardType[],
-  initCards: (): void => undefined,
   addCard: (_: CardType): void => undefined,
   removeCard: (_: string): void => undefined,
   getCard: (_: string): CardType | undefined => undefined,
 });
 
-const cardStorage = createStorage<CardType[]>('cards');
+// const cardStorage = createStorage<CardType[]>('cards');
 
 export const useCardContext = () => useContext(CardContext);
 
-export const CardProvider = ({ children }: PropsWithChildren) => {
-  const [Cards, setCards] = useState(() => cardStorage.get());
-
-  const initCards = () => {
-    const cards = cardStorage.get();
-    setCards(cards);
-  };
+export const CardProvider = ({
+  children,
+  onChange,
+}: PropsWithChildren<{ onChange: (value: CardType[]) => void }>) => {
+  const [Cards, setCards] = useState<CardType[]>([]);
 
   const updateCards = (newCards: CardType[]) => {
-    cardStorage.set(newCards);
     setCards(newCards);
+    onChange(newCards);
   };
 
   const getCard = (cardNumber: string) => {
@@ -57,7 +53,6 @@ export const CardProvider = ({ children }: PropsWithChildren) => {
 
   const contextValue = {
     Cards,
-    initCards,
     addCard,
     getCard,
     removeCard,

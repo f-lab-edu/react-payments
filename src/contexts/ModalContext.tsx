@@ -1,5 +1,4 @@
-import { createContext, useState, ReactNode, FC } from 'react';
-import Modal from '../components/Modal';
+import { createContext, FC, ReactNode, useState } from 'react';
 
 // Modal Context 타입 정의
 export interface ModalContextType {
@@ -52,7 +51,6 @@ export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
         historyBack,
       }}
     >
-      <Modal />
       {children}
     </ModalContext.Provider>
   );
